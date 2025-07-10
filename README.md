@@ -1,10 +1,16 @@
-# My Personal Project
+# Ice-Cream Shop Pre-Order System
 
-## A subtitle
+## Project Description
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+This application will serve as a **digital pre-order system** for ice-cream shops, allowing customers to place their orders in advance and reducing wait times during busy periods. The system will enable customers to browse available flavors, customize their orders with various toppings and sizes, and schedule pickup times. Shop employees will be able to manage incoming orders, track preparation progress, and maintain inventory of available items.
 
-An example of text with **bold** and *italic* fonts.  
+The primary users of this application will be **ice-cream shop customers** who want to avoid long queues and **shop staff members** who need to efficiently manage order fulfillment. This project is of particular interest to me because it addresses a real-world problem I've experienced firsthand - waiting in long lines at popular ice-cream shops during peak hours. By creating a system that streamlines the ordering process, we can improve customer satisfaction while helping small businesses operate more efficiently and serve more customers during busy periods.
+
+## User Stories
+
+* As a user, I want to be able to add an ice cream order to my pre-order queue so that I can avoid waiting in line
+* As a user, I want to be able to view the list of all pending pre-orders so that I can see the current queue status
+* As a user, I want to be able to select ice cream flavors, toppings, and sizes when creating my order so that I can customize it to my preferences
+* As a user, I want to be able to mark an order as completed/picked up so that it is removed from the active queue
+* As a user, I want to be able to view the estimated preparation time for my order so that I know when to arrive for pickup
+* As a user, I want to be able to cancel my pre-order if my plans change before the ice cream is prepared
