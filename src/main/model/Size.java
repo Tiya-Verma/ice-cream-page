@@ -12,23 +12,22 @@ public class Size {
      * EFFECTS: creates a size with given name and price multiplier
      */
     public Size(String sizeName, double multiplier) {
-        // stub
+        this.name = sizeName;
+        this.priceMultiplier = multiplier;
     }
 
     /**
      * EFFECTS: returns the name of this size
      */
     public String getName() {
-        return "";
-        // stub
+        return name;
     }
 
     /**
      * EFFECTS: returns the price multiplier for this size
      */
     public double getPriceMultiplier() {
-        return 0.0;
-        // stub
+        return priceMultiplier;
     }
 
     /**
@@ -36,7 +35,6 @@ public class Size {
      */
     @Override
     public String toString() {
-        // stub
-        return "";
+        return name + " (x" + String.format("%.1f", priceMultiplier) + ")";
     }
 } 

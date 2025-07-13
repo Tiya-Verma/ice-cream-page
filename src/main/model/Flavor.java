@@ -13,31 +13,30 @@ public class Flavor {
      * EFFECTS: creates a flavor with given name and price
      */
     public Flavor(String flavorName, double price) {
-        // stub
+        this.name = flavorName;
+        this.price = price;
+        this.isAvailable = true;
     }
 
     /**
      * EFFECTS: returns the name of this flavor
      */
     public String getName() {
-        return "";
-        // stub
+        return name;
     }
 
     /**
      * EFFECTS: returns the price of this flavor
      */
     public double getPrice() {
-        return 0.0;
-        // stub
+        return price;
     }
 
     /**
      * EFFECTS: returns true if this flavor is available, false otherwise
      */
     public boolean isAvailable() {
-        return false;
-        // stub
+        return isAvailable;
     }
 
     /**
@@ -45,7 +44,7 @@ public class Flavor {
      * EFFECTS: sets the availability of this flavor
      */
     public void setAvailable(boolean available) {
-        // stub
+        this.isAvailable = available;
     }
 
     /**
@@ -53,7 +52,6 @@ public class Flavor {
      */
     @Override
     public String toString() {
-        return "";
-        // stub
+        return name + " ($" + String.format("%.2f", price) + ")";
     }
 } 

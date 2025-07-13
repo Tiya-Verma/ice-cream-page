@@ -14,7 +14,8 @@ public class OrderQueue {
      * EFFECTS: creates an empty order queue
      */
     public OrderQueue() {
-        // stub
+        this.pendingOrders = new ArrayList<>();
+        this.completedOrders = new ArrayList<>();
     }
 
     /**
@@ -23,7 +24,7 @@ public class OrderQueue {
      * EFFECTS: adds the given order to the pending queue
      */
     public void addOrder(Order order) {
-        // stub
+        pendingOrders.add(order);
     }
 
     /**
@@ -32,7 +33,12 @@ public class OrderQueue {
      * EFFECTS: marks the order with given ID as completed and moves it to completed orders
      */
     public void completeOrder(int orderId) {
-        // stub
+        Order orderToComplete = findOrderById(orderId);
+        if (orderToComplete != null) {
+            orderToComplete.markCompleted();
+            pendingOrders.remove(orderToComplete);
+            completedOrders.add(orderToComplete);
+        }
     }
 
     /**
@@ -41,47 +47,45 @@ public class OrderQueue {
      * EFFECTS: removes the order with given ID from the pending queue
      */
     public void cancelOrder(int orderId) {
-        // stub
+        Order orderToCancel = findOrderById(orderId);
+        if (orderToCancel != null) {
+            pendingOrders.remove(orderToCancel);
+        }
     }
 
     /**
      * EFFECTS: returns a list of all pending orders
      */
     public List<Order> getPendingOrders() {
-        return null;
-        // stub
+        return new ArrayList<>(pendingOrders);
     }
 
     /**
      * EFFECTS: returns a list of all completed orders
      */
     public List<Order> getCompletedOrders() {
-        return null;
-        // stub
+        return new ArrayList<>(completedOrders);
     }
 
     /**
      * EFFECTS: returns the number of pending orders
      */
     public int getPendingOrderCount() {
-        return 0;
-        // stub
+        return pendingOrders.size();
     }
 
     /**
      * EFFECTS: returns the number of completed orders
      */
     public int getCompletedOrderCount() {
-        return 0;
-        // stub
+        return completedOrders.size();
     }
 
     /**
      * EFFECTS: returns true if there are no pending orders, false otherwise
      */
     public boolean isEmpty() {
-        return false;
-        // stub
+        return pendingOrders.isEmpty();
     }
 
     /**
@@ -89,7 +93,11 @@ public class OrderQueue {
      * EFFECTS: returns the order with the given ID, or null if not found
      */
     public Order findOrderById(int orderId) {
-        // stub
+        for (Order order : pendingOrders) {
+            if (order.getOrderId() == orderId) {
+                return order;
+            }
+        }
         return null;
     }
 
@@ -97,7 +105,9 @@ public class OrderQueue {
      * EFFECTS: returns the estimated preparation time for the next order in queue
      */
     public int getNextOrderPrepTime() {
-        // stub
+        if (!pendingOrders.isEmpty()) {
+            return pendingOrders.get(0).getEstimatedPrepTime();
+        }
         return 0;
     }
 
@@ -106,7 +116,18 @@ public class OrderQueue {
      */
     @Override
     public String toString() {
-        // stub
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order Queue Status:\n");
+        sb.append("Pending Orders: ").append(getPendingOrderCount()).append("\n");
+        sb.append("Completed Orders: ").append(getCompletedOrderCount()).append("\n");
+        
+        if (!pendingOrders.isEmpty()) {
+            sb.append("\nPending Orders:\n");
+            for (Order order : pendingOrders) {
+                sb.append(order.toString()).append("\n---\n");
+            }
+        }
+        
+        return sb.toString();
     }
 } 

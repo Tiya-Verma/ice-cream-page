@@ -13,31 +13,30 @@ public class Topping {
      * EFFECTS: creates a topping with given name and price, initially available
      */
     public Topping(String toppingName, double price) {
-        // stub
+        this.name = toppingName;
+        this.price = price;
+        this.isAvailable = true;
     }
 
     /**
      * EFFECTS: returns the name of this topping
      */
     public String getName() {
-        return "";
-        // stub
+        return name;
     }
 
     /**
      * EFFECTS: returns the price of this topping
      */
     public double getPrice() {
-        return 0.0;
-        // stub
+        return price;
     }
 
     /**
      * EFFECTS: returns true if this topping is available, false otherwise
      */
     public boolean isAvailable() {
-        return false;
-        // stub
+        return isAvailable;
     }
 
     /**
@@ -45,7 +44,7 @@ public class Topping {
      * EFFECTS: sets the availability of this topping
      */
     public void setAvailable(boolean available) {
-        // stub
+        this.isAvailable = available;
     }
 
     /**
@@ -53,6 +52,6 @@ public class Topping {
      */
     @Override
     public String toString() {
-        return "";
+        return name + " ($" + String.format("%.2f", price) + ")";
     }
 } 

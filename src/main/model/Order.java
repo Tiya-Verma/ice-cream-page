@@ -25,71 +25,70 @@ public class Order {
      * EFFECTS: creates an order with given details, initially not completed
      */
     public Order(String customerName, Flavor flavor, Size size, String pickupTime, int prepTime) {
-        // stub
+        this.orderId = nextOrderId++;
+        this.customerName = customerName;
+        this.flavor = flavor;
+        this.toppings = new ArrayList<>();
+        this.size = size;
+        this.pickupTime = pickupTime;
+        this.isCompleted = false;
+        this.estimatedPrepTime = prepTime;
     }
 
     /**
      * EFFECTS: returns the order ID
      */
     public int getOrderId() {
-        return 0;
-        // stub
+        return orderId;
     }
 
     /**
      * EFFECTS: returns the customer name
      */
     public String getCustomerName() {
-        return "";
-        // stub
+        return customerName;
     }
 
     /**
      * EFFECTS: returns the selected flavor
      */
     public Flavor getFlavor() {
-        return null;
-        // stub
+        return flavor;
     }
 
     /**
      * EFFECTS: returns the list of selected toppings
      */
     public List<Topping> getToppings() {
-        return null;
-        // stub
+        return new ArrayList<>(toppings);
     }
 
     /**
      * EFFECTS: returns the selected size
      */
     public Size getSize() {
-        return null;
-        // stub
+        return size;
     }
 
     /**
      * EFFECTS: returns the pickup time
      */
     public String getPickupTime() {
-        return "";
-        // stub
+        return pickupTime;
     }
 
     /**
      * EFFECTS: returns true if order is completed, false otherwise
      */
     public boolean isCompleted() {
-        return false;
-        // stub
+        return isCompleted;
     }
 
     /**
      * EFFECTS: returns the estimated preparation time in minutes
      */
     public int getEstimatedPrepTime() {
-        return 0;
-        // stub
+        return estimatedPrepTime;
     }
 
     /**
@@ -98,7 +97,7 @@ public class Order {
      * EFFECTS: adds the given topping to this order
      */
     public void addTopping(Topping topping) {
-        // stub
+        toppings.add(topping);
     }
 
     /**
@@ -106,15 +105,19 @@ public class Order {
      * EFFECTS: marks this order as completed
      */
     public void markCompleted() {
-        // stub
+        this.isCompleted = true;
     }
 
     /**
      * EFFECTS: calculates and returns the total price of this order
      */
     public double getTotalPrice() {
-        return 0.0;
-        // stub
+        double basePrice = flavor.getPrice();
+        double toppingPrice = 0;
+        for (Topping topping : toppings) {
+            toppingPrice += topping.getPrice();
+        }
+        return (basePrice + toppingPrice) * size.getPriceMultiplier();
     }
 
     /**
@@ -122,7 +125,23 @@ public class Order {
      */
     @Override
     public String toString() {
-        // stub
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order #").append(orderId).append(" - ").append(customerName).append("\n");
+        sb.append("Flavor: ").append(flavor.getName()).append("\n");
+        sb.append("Size: ").append(size.getName()).append("\n");
+        if (!toppings.isEmpty()) {
+            sb.append("Toppings: ");
+            for (int i = 0; i < toppings.size(); i++) {
+                if (i > 0) {
+                    sb.append(", ");
+                }
+                sb.append(toppings.get(i).getName());
+            }
+            sb.append("\n");
+        }
+        sb.append("Pickup Time: ").append(pickupTime).append("\n");
+        sb.append("Total Price: $").append(String.format("%.2f", getTotalPrice())).append("\n");
+        sb.append("Status: ").append(isCompleted ? "Completed" : "Pending");
+        return sb.toString();
     }
 }
