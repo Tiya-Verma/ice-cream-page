@@ -14,3 +14,5 @@ The primary users of this application will be **ice-cream shop customers** who w
 * As a user, I want to be able to mark an order as completed/picked up so that it is removed from the active queue
 * As a user, I want to be able to view the estimated preparation time for my order so that I know when to arrive for pickup
 * As a user, I want to be able to cancel my pre-order if my plans change before the ice cream is prepared
+* As a user, I want to be able to save the entire state of my ice cream shop (including all pending and completed orders) to a file so that I can preserve my data between application sessions
+* As a user, I want to be able to load the entire state of my ice cream shop from a file so that I can resume exactly where I left off at some earlier time
