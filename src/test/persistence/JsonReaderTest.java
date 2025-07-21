@@ -45,8 +45,14 @@ public class JsonReaderTest extends JsonTest {
             checkOrder("Alice", "Vanilla", "Small", 1, false, pending.get(0));
             checkOrder("Bob", "Chocolate", "Large", 2, false, pending.get(1));
             checkOrder("Carol", "Strawberry", "Medium", 0, true, completed.get(0));
+
+            // Check individual topping details
+            checkTopping("Sprinkles", 0.5, true, pending.get(0).getToppings().get(0));
+            checkTopping("Nuts", 1.0, true, pending.get(1).getToppings().get(0));
+            checkTopping("Cherry", 0.5, true, pending.get(1).getToppings().get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
+
 }

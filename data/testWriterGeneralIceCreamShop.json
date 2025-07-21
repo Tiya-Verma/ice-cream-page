@@ -1,0 +1,41 @@
+{
+    "nextOrderId": 9,
+    "completedOrders": [{
+        "flavor": {
+            "isAvailable": true,
+            "price": 3.75,
+            "name": "Strawberry"
+        },
+        "pickupTime": "12:00",
+        "size": {
+            "name": "Medium",
+            "priceMultiplier": 1.25
+        },
+        "orderId": 8,
+        "estimatedPrepTime": 6,
+        "toppings": [],
+        "customerName": "Carol",
+        "isCompleted": true
+    }],
+    "pendingOrders": [{
+        "flavor": {
+            "isAvailable": true,
+            "price": 3.5,
+            "name": "Vanilla"
+        },
+        "pickupTime": "10:00",
+        "size": {
+            "name": "Small",
+            "priceMultiplier": 1
+        },
+        "orderId": 7,
+        "estimatedPrepTime": 5,
+        "toppings": [{
+            "isAvailable": true,
+            "price": 0.5,
+            "name": "Cherry"
+        }],
+        "customerName": "Alice",
+        "isCompleted": false
+    }]
+}

@@ -1,0 +1,57 @@
+{
+    "nextOrderId": 6,
+    "completedOrders": [],
+    "pendingOrders": [
+        {
+            "flavor": {
+                "isAvailable": true,
+                "price": 3.5,
+                "name": "Chocolate"
+            },
+            "pickupTime": "1:00PM",
+            "size": {
+                "name": "Medium",
+                "priceMultiplier": 1
+            },
+            "orderId": 3,
+            "estimatedPrepTime": 5,
+            "toppings": [],
+            "customerName": "Alice",
+            "isCompleted": false
+        },
+        {
+            "flavor": {
+                "isAvailable": true,
+                "price": 3.5,
+                "name": "Chocolate"
+            },
+            "pickupTime": "2:00PM",
+            "size": {
+                "name": "Medium",
+                "priceMultiplier": 1
+            },
+            "orderId": 4,
+            "estimatedPrepTime": 7,
+            "toppings": [],
+            "customerName": "Bob",
+            "isCompleted": false
+        },
+        {
+            "flavor": {
+                "isAvailable": true,
+                "price": 3.5,
+                "name": "Chocolate"
+            },
+            "pickupTime": "3:00PM",
+            "size": {
+                "name": "Medium",
+                "priceMultiplier": 1
+            },
+            "orderId": 5,
+            "estimatedPrepTime": 8,
+            "toppings": [],
+            "customerName": "Carol",
+            "isCompleted": false
+        }
+    ]
+}

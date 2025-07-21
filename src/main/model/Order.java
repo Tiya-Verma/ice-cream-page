@@ -2,12 +2,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 /**
  * Represents an ice cream order with flavor, toppings, size, and customer
  * information
  */
-public class Order {
+public class Order implements Writable {
     private static int nextOrderId = 1;
     private int orderId;
     private String customerName;
@@ -106,6 +109,46 @@ public class Order {
      */
     public void markCompleted() {
         this.isCompleted = true;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("orderId", orderId);
+        json.put("customerName", customerName);
+        json.put("flavor", flavor.toJson());
+        json.put("size", size.toJson());
+        json.put("toppings", toppingsToJson());
+        json.put("pickupTime", pickupTime);
+        json.put("isCompleted", isCompleted);
+        json.put("estimatedPrepTime", estimatedPrepTime);
+        return json;
+    }
+
+    // EFFECTS: returns toppings in this order as a JSON array
+    private JSONArray toppingsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Topping topping : toppings) {
+            jsonArray.put(topping.toJson());
+        }
+        return jsonArray;
+    }
+
+    // EFFECTS: returns the current nextOrderId value
+    public static int getNextOrderId() {
+        return nextOrderId;
+    }
+
+    // MODIFIES: this (static field)
+    // EFFECTS: sets the nextOrderId to the given value
+    public static void setNextOrderId(int id) {
+        nextOrderId = id;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the order ID for this order (used when loading from JSON)
+    public void setOrderId(int id) {
+        this.orderId = id;
     }
 
     /**

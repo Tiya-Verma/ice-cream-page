@@ -1,0 +1,25 @@
+{
+    "nextOrderId": 2,
+    "completedOrders": [],
+    "pendingOrders": [{
+        "flavor": {
+            "isAvailable": true,
+            "price": 4,
+            "name": "Chocolate"
+        },
+        "pickupTime": "ASAP",
+        "size": {
+            "name": "Large",
+            "priceMultiplier": 1.5
+        },
+        "orderId": 1,
+        "estimatedPrepTime": 5,
+        "toppings": [{
+            "isAvailable": true,
+            "price": 0.75,
+            "name": "Chocolate Chips"
+        }],
+        "customerName": "Mochi",
+        "isCompleted": false
+    }]
+}

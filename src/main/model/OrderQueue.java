@@ -2,11 +2,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 /**
- * Represents a queue of ice cream orders that manages pending and completed orders
+ * Represents a queue of ice cream orders that manages pending and completed
+ * orders
  */
-public class OrderQueue {
+public class OrderQueue implements Writable {
     private List<Order> pendingOrders;
     private List<Order> completedOrders;
 
@@ -28,9 +32,19 @@ public class OrderQueue {
     }
 
     /**
+     * REQUIRES: order is not null and order.isCompleted() is true
+     * MODIFIES: this
+     * EFFECTS: adds the given completed order directly to the completed orders list
+     */
+    public void addCompletedOrder(Order order) {
+        completedOrders.add(order);
+    }
+
+    /**
      * REQUIRES: orderId corresponds to an existing pending order
      * MODIFIES: this
-     * EFFECTS: marks the order with given ID as completed and moves it to completed orders
+     * EFFECTS: marks the order with given ID as completed and moves it to completed
+     * orders
      */
     public void completeOrder(int orderId) {
         Order orderToComplete = findOrderById(orderId);
@@ -111,6 +125,33 @@ public class OrderQueue {
         return 0;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("nextOrderId", Order.getNextOrderId());
+        json.put("pendingOrders", pendingOrdersToJson());
+        json.put("completedOrders", completedOrdersToJson());
+        return json;
+    }
+
+    // EFFECTS: returns pending orders as a JSON array
+    private JSONArray pendingOrdersToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Order order : pendingOrders) {
+            jsonArray.put(order.toJson());
+        }
+        return jsonArray;
+    }
+
+    // EFFECTS: returns completed orders as a JSON array
+    private JSONArray completedOrdersToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Order order : completedOrders) {
+            jsonArray.put(order.toJson());
+        }
+        return jsonArray;
+    }
+
     /**
      * EFFECTS: returns a string representation of the order queue
      */
@@ -120,14 +161,14 @@ public class OrderQueue {
         sb.append("Order Queue Status:\n");
         sb.append("Pending Orders: ").append(getPendingOrderCount()).append("\n");
         sb.append("Completed Orders: ").append(getCompletedOrderCount()).append("\n");
-        
+
         if (!pendingOrders.isEmpty()) {
             sb.append("\nPending Orders:\n");
             for (Order order : pendingOrders) {
                 sb.append(order.toString()).append("\n---\n");
             }
         }
-        
+
         return sb.toString();
     }
-} 
+}

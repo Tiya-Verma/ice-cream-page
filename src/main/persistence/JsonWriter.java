@@ -4,102 +4,61 @@ import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
  * Represents a writer that can write ice cream shop data to JSON file
+ * 
+ * Referenced from the JsonSerialization Demo
+ * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
 public class JsonWriter {
-   // stub
+    private static final int TAB = 4;
+    private PrintWriter writer;
+    private String destination;
 
     /**
      * REQUIRES: destination is a valid file path
      * EFFECTS: constructs writer to write to destination file
      */
     public JsonWriter(String destination) {
-       // stub
+        this.destination = destination;
     }
 
     /**
-     * REQUIRES: orderQueue is not null
      * MODIFIES: this
-     * EFFECTS: writes the JSON representation of orderQueue to file
-     * throws IOException if an error occurs writing data to file
+     * EFFECTS: opens writer; throws FileNotFoundException if destination file
+     * cannot
+     * be opened for writing
      */
-    public void write(OrderQueue orderQueue) throws IOException {
-        // stub
+    public void open() throws FileNotFoundException {
+        writer = new PrintWriter(destination);
     }
 
     /**
-     * EFFECTS: writes string to file
-     * throws IOException if an error occurs writing data to file
+     * MODIFIES: this
+     * EFFECTS: writes JSON representation of order queue to file
      */
-    private void saveToFile(String json) throws IOException {
-       // stub
+    public void write(OrderQueue oq) {
+        JSONObject json = oq.toJson();
+        saveToFile(json.toString(TAB));
     }
 
     /**
-     * REQUIRES: orderQueue is not null
-     * EFFECTS: returns JSON object representing orderQueue
+     * MODIFIES: this
+     * EFFECTS: closes writer
      */
-    private JSONObject orderQueueToJson(OrderQueue orderQueue) {
-        // stub
-        return null;
+    public void close() {
+        writer.close();
     }
 
-    /**
-     * REQUIRES: orders is not null
-     * EFFECTS: returns JSON array representing list of orders
-     */
-    private JSONArray ordersToJson(List<Order> orders) {
-        // stub
-        return null;
+    // MODIFIES: this
+    // EFFECTS: writes string to file
+    private void saveToFile(String json) {
+        writer.print(json);
     }
-
-    /**
-     * REQUIRES: order is not null
-     * EFFECTS: returns JSON object representing order
-     */
-    private JSONObject orderToJson(Order order) {
-       // stub
-       return null;
-    }
-
-    /**
-     * REQUIRES: flavor is not null
-     * EFFECTS: returns JSON object representing flavor
-     */
-    private JSONObject flavorToJson(Flavor flavor) {
-       // stub
-       return null;
-    }
-
-    /**
-     * REQUIRES: size is not null
-     * EFFECTS: returns JSON object representing size
-     */
-    private JSONObject sizeToJson(Size size) {
-        // stub
-        return null;
-    }
-
-    /**
-     * REQUIRES: toppings is not null
-     * EFFECTS: returns JSON array representing list of toppings
-     */
-    private JSONArray toppingsToJson(List<Topping> toppings) {
-       // stub
-       return null;
-    }
-
-    /**
-     * REQUIRES: topping is not null
-     * EFFECTS: returns JSON object representing topping
-     */
-    private JSONObject toppingToJson(Topping topping) {
-        // stub
-        return null;
-    }
-} 
+}

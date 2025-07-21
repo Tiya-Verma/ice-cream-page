@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /**
  * Represents a topping available for ice cream orders
  */
-public class Topping {
+public class Topping implements Writable {
     private String name;
     private double price;
     private boolean isAvailable;
@@ -47,6 +50,15 @@ public class Topping {
         this.isAvailable = available;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("price", price);
+        json.put("isAvailable", isAvailable);
+        return json;
+    }
+
     /**
      * EFFECTS: returns a string representation of this topping
      */
@@ -54,4 +66,4 @@ public class Topping {
     public String toString() {
         return name + " ($" + String.format("%.2f", price) + ")";
     }
-} 
+}

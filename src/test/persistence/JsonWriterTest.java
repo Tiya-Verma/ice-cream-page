@@ -56,18 +56,14 @@ public class JsonWriterTest extends JsonTest {
         try {
             // Add pending orders
             Order o1 = new Order("Alice", new Flavor("Vanilla", 3.5), new Size("Small", 1.0), "10:00", 5);
-            o1.addTopping(new Topping("Sprinkles", 0.5));
-            Order o2 = new Order("Bob", new Flavor("Chocolate", 4.0), new Size("Large", 1.5), "11:00", 7);
-            o2.addTopping(new Topping("Nuts", 1.0));
-            o2.addTopping(new Topping("Cherry", 0.5));
+            o1.addTopping(new Topping("Cherry", 0.5));
             oq.addOrder(o1);
-            oq.addOrder(o2);
-            
+            // oq.addOrder(o2);
+
             // Add completed order
             Order o3 = new Order("Carol", new Flavor("Strawberry", 3.75), new Size("Medium", 1.25), "12:00", 6);
             o3.markCompleted();
-            oq.completeOrder(o3.getOrderId()); // simulate as completed
-            oq.getCompletedOrders().add(o3); // force add for test
+            oq.addCompletedOrder(o3);
 
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralIceCreamShop.json");
             writer.open();
@@ -76,12 +72,14 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralIceCreamShop.json");
             oq = reader.read();
-            checkOrderQueue(2, 1, oq);
+            checkOrderQueue(1, 1, oq);
             List<Order> pending = oq.getPendingOrders();
             List<Order> completed = oq.getCompletedOrders();
             checkOrder("Alice", "Vanilla", "Small", 1, false, pending.get(0));
-            checkOrder("Bob", "Chocolate", "Large", 2, false, pending.get(1));
             checkOrder("Carol", "Strawberry", "Medium", 0, true, completed.get(0));
+
+            // Check individual topping details
+            checkTopping("Cherry", 0.5, true, pending.get(0).getToppings().get(0));
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

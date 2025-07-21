@@ -1,7 +1,11 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,11 +14,14 @@ import java.util.Scanner;
  * Console-based user interface for the Ice Cream Shop Pre-Order System
  */
 public class IceCreamShopApp {
+    private static final String JSON_STORE = "./data/orderqueue.json";
     private OrderQueue orderQueue;
     private List<Flavor> availableFlavors;
     private List<Topping> availableToppings;
     private List<Size> availableSizes;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     /**
      * EFFECTS: runs the ice cream shop application
@@ -65,6 +72,10 @@ public class IceCreamShopApp {
             viewPrepTime();
         } else if (command.equals("m")) {
             viewMenu();
+        } else if (command.equals("s")) {
+            saveOrderQueue();
+        } else if (command.equals("l")) {
+            loadOrderQueue();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -78,7 +89,9 @@ public class IceCreamShopApp {
         orderQueue = new OrderQueue();
         input = new Scanner(System.in);
         input.useDelimiter("\r?\n|\r");
-        
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
         // Initialize available flavors
         availableFlavors = new ArrayList<>();
         availableFlavors.add(new Flavor("Vanilla", 3.50));
@@ -114,6 +127,8 @@ public class IceCreamShopApp {
         System.out.println("\tx -> cancel order");
         System.out.println("\tt -> view preparation time");
         System.out.println("\tm -> view menu");
+        System.out.println("\ts -> save order queue to file");
+        System.out.println("\tl -> load order queue from file");
         System.out.println("\tq -> quit");
     }
 
@@ -123,7 +138,7 @@ public class IceCreamShopApp {
      */
     private void addNewOrder() {
         System.out.println("\n=== Add New Order ===");
-        
+
         // Get customer name
         System.out.print("Enter customer name: ");
         input.nextLine(); // consume newline
@@ -230,7 +245,7 @@ public class IceCreamShopApp {
     private void viewPendingOrders() {
         System.out.println("\n=== Pending Orders ===");
         List<Order> pendingOrders = orderQueue.getPendingOrders();
-        
+
         if (pendingOrders.isEmpty()) {
             System.out.println("No pending orders.");
         } else {
@@ -247,7 +262,7 @@ public class IceCreamShopApp {
      */
     private void completeOrder() {
         System.out.println("\n=== Complete Order ===");
-        
+
         if (orderQueue.isEmpty()) {
             System.out.println("No pending orders to complete.");
             return;
@@ -271,7 +286,7 @@ public class IceCreamShopApp {
      */
     private void cancelOrder() {
         System.out.println("\n=== Cancel Order ===");
-        
+
         if (orderQueue.isEmpty()) {
             System.out.println("No pending orders to cancel.");
             return;
@@ -294,7 +309,7 @@ public class IceCreamShopApp {
      */
     private void viewPrepTime() {
         System.out.println("\n=== Preparation Time ===");
-        
+
         if (orderQueue.isEmpty()) {
             System.out.println("No pending orders.");
         } else {
@@ -309,20 +324,50 @@ public class IceCreamShopApp {
      */
     private void viewMenu() {
         System.out.println("\n=== Menu ===");
-        
+
         System.out.println("FLAVORS:");
         for (Flavor flavor : availableFlavors) {
             System.out.println("  " + flavor.toString());
         }
-        
+
         System.out.println("\nSIZES:");
         for (Size size : availableSizes) {
             System.out.println("  " + size.toString());
         }
-        
+
         System.out.println("\nTOPPINGS:");
         for (Topping topping : availableToppings) {
             System.out.println("  " + topping.toString());
         }
     }
-} 
+
+    /**
+     * EFFECTS: saves the order queue to file
+     */
+    private void saveOrderQueue() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(orderQueue);
+            jsonWriter.close();
+            System.out.println("Saved order queue to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    /**
+     * MODIFIES: this
+     * EFFECTS: loads order queue from file
+     */
+    private void loadOrderQueue() {
+        try {
+            orderQueue = jsonReader.read();
+            System.out.println("Loaded order queue from " + JSON_STORE);
+            System.out.println("Pending orders: " + orderQueue.getPendingOrderCount());
+            System.out.println("Completed orders: " + orderQueue.getCompletedOrderCount());
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Starting with empty order queue");
+        }
+    }
+}

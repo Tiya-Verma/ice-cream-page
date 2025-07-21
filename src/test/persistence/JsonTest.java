@@ -11,7 +11,8 @@ public class JsonTest {
         assertEquals(isAvailable, topping.isAvailable());
     }
 
-    protected void checkOrder(String customerName, String flavorName, String sizeName, int toppingCount, boolean isCompleted, Order order) {
+    protected void checkOrder(String customerName, String flavorName, String sizeName, int toppingCount,
+            boolean isCompleted, Order order) {
         assertEquals(customerName, order.getCustomerName());
         assertEquals(flavorName, order.getFlavor().getName());
         assertEquals(sizeName, order.getSize().getName());

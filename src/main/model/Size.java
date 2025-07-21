@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /**
  * Represents a size option for ice cream orders
  */
-public class Size {
+public class Size implements Writable {
     private String name;
     private double priceMultiplier;
 
@@ -30,6 +33,14 @@ public class Size {
         return priceMultiplier;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("priceMultiplier", priceMultiplier);
+        return json;
+    }
+
     /**
      * EFFECTS: returns a string representation of this size
      */
@@ -37,4 +48,4 @@ public class Size {
     public String toString() {
         return name + " (x" + String.format("%.1f", priceMultiplier) + ")";
     }
-} 
+}

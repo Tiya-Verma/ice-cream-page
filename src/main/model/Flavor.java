@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /**
  * Represents an ice cream flavor available in the shop
  */
-public class Flavor {
+public class Flavor implements Writable {
     private String name;
     private double price;
     private boolean isAvailable;
@@ -47,6 +50,15 @@ public class Flavor {
         this.isAvailable = available;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("price", price);
+        json.put("isAvailable", isAvailable);
+        return json;
+    }
+
     /**
      * EFFECTS: returns a string representation of this flavor
      */
@@ -54,4 +66,4 @@ public class Flavor {
     public String toString() {
         return name + " ($" + String.format("%.2f", price) + ")";
     }
-} 
+}
