@@ -113,8 +113,8 @@ public class IceCreamShopAppGUI extends JFrame implements ActionListener {
     }
 
     private void applyThemeColors() {
-        Color panelBg = new Color(236, 244, 253); // Creamy
-        Color buttonBg = new Color(246, 244, 234); // Light pink
+        Color panelBg = new Color(236, 244, 253); // Light blue
+        Color buttonBg = new Color(246, 244, 234); // yellow
         Color buttonText = new Color(90, 45, 30); // Brown
 
         // Frame
@@ -285,8 +285,8 @@ public class IceCreamShopAppGUI extends JFrame implements ActionListener {
      * EFFECTS: creates and returns the order display panel
      */
     private JPanel createOrderDisplayPanel() {
-        Color backgroundColor = new Color(202, 221, 241); // Creamy white (panel background)
-        Color scrollAreaColor = new Color(245, 208, 199); // Match panel bg (optional)
+        Color backgroundColor = new Color(202, 221, 241); // blue
+        Color scrollAreaColor = new Color(245, 208, 199); 
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Orders"));
@@ -295,13 +295,13 @@ public class IceCreamShopAppGUI extends JFrame implements ActionListener {
         // Create the orders display area
         orderDisplayPanel = new JPanel();
         orderDisplayPanel.setLayout(new BoxLayout(orderDisplayPanel, BoxLayout.Y_AXIS));
-        orderDisplayPanel.setBackground(backgroundColor); // Match background
+        orderDisplayPanel.setBackground(backgroundColor);
 
         orderScrollPane = new JScrollPane(orderDisplayPanel);
         orderScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        orderScrollPane.getViewport().setBackground(scrollAreaColor); // Set scroll area background
-        orderScrollPane.setBorder(null); // Optional: remove default border
-        orderScrollPane.setBackground(scrollAreaColor); // Set entire scroll pane bg
+        orderScrollPane.getViewport().setBackground(scrollAreaColor); 
+        orderScrollPane.setBorder(null); 
+        orderScrollPane.setBackground(scrollAreaColor); 
 
         panel.add(orderScrollPane, BorderLayout.CENTER);
 
