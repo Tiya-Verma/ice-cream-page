@@ -16,3 +16,11 @@ The primary users of this application will be **ice-cream shop customers** who w
 * As a user, I want to be able to cancel my pre-order if my plans change before the ice cream is prepared
 * As a user, I want to be able to save the entire state of my ice cream shop (including all pending and completed orders) to a file so that I can preserve my data between application sessions
 * As a user, I want to be able to load the entire state of my ice cream shop from a file so that I can resume exactly where I left off at some earlier time
+
+# Instructions for End User
+
+- You can generate the first required action related to the user story "adding multiple Orders to an OrderQueue" by filling out the order form on the left side of the application (customer name, flavor, size, and toppings) and clicking the "Add Order" button
+- You can generate the second required action related to the user story "adding multiple Orders to an OrderQueue" by clicking the "Complete Order" button in the Actions panel and selecting an order from the dropdown menu to mark it as completed
+- You can locate my visual component by looking at the Actions panel on the right side of the application - there is a colorful ice cream cone graphic displayed in the center of that panel
+- You can save the state of my application by clicking the "Save Orders" button in the Actions panel on the right, or by clicking on the "File" menu at the top of the window and selecting "Save Order Queue"
+- You can reload the state of my application by clicking the "Load Orders" button in the Actions panel on the right, or by clicking on the "File" menu at the top of the window and selecting "Load Order Queue"
