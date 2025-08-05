@@ -1,68 +1,59 @@
 {
-    "nextOrderId": 4,
+    "nextOrderId": 3,
     "completedOrders": [{
         "flavor": {
             "isAvailable": true,
-            "price": 3.5,
-            "name": "Vanilla"
+            "price": 4,
+            "name": "Chocolate"
         },
         "pickupTime": "ASAP",
         "size": {
-            "name": "Small",
-            "priceMultiplier": 1
+            "name": "Large",
+            "priceMultiplier": 1.5
         },
-        "orderId": 3,
+        "orderId": 2,
         "estimatedPrepTime": 5,
-        "toppings": [{
-            "isAvailable": true,
-            "price": 1,
-            "name": "Marshmallow"
-        }],
-        "customerName": "swampy",
-        "isCompleted": true
-    }],
-    "pendingOrders": [
-        {
-            "flavor": {
-                "isAvailable": true,
-                "price": 4,
-                "name": "Chocolate"
-            },
-            "pickupTime": "ASAP",
-            "size": {
-                "name": "Small",
-                "priceMultiplier": 1
-            },
-            "orderId": 1,
-            "estimatedPrepTime": 5,
-            "toppings": [{
+        "toppings": [
+            {
                 "isAvailable": true,
                 "price": 0.5,
                 "name": "Sprinkles"
-            }],
-            "customerName": "tiya",
-            "isCompleted": false
-        },
-        {
-            "flavor": {
+            },
+            {
                 "isAvailable": true,
-                "price": 4.5,
-                "name": "Cookie Dough"
-            },
-            "pickupTime": "ASAP",
-            "size": {
-                "name": "Small",
-                "priceMultiplier": 1
-            },
-            "orderId": 2,
-            "estimatedPrepTime": 5,
-            "toppings": [{
+                "price": 1,
+                "name": "Marshmallow"
+            }
+        ],
+        "customerName": "mochi",
+        "isCompleted": true
+    }],
+    "pendingOrders": [{
+        "flavor": {
+            "isAvailable": true,
+            "price": 4.5,
+            "name": "Cookie Dough"
+        },
+        "pickupTime": "ASAP",
+        "size": {
+            "name": "Medium",
+            "priceMultiplier": 1.25
+        },
+        "orderId": 1,
+        "estimatedPrepTime": 5,
+        "toppings": [
+            {
                 "isAvailable": true,
                 "price": 0.75,
                 "name": "Chocolate Drizzle"
-            }],
-            "customerName": "mochi",
-            "isCompleted": false
-        }
-    ]
+            },
+            {
+                "isAvailable": true,
+                "price": 0.5,
+                "name": "Waffle"
+            }
+        ],
+        "customerName": "Tiya",
+        "isCompleted": false
+    }]
 }

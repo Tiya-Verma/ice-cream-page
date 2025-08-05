@@ -29,6 +29,7 @@ public class OrderQueue implements Writable {
      */
     public void addOrder(Order order) {
         pendingOrders.add(order);
+        EventLog.getInstance().logEvent(new Event("Order with ID " + order.getOrderId() + " was added to the queue."));
     }
 
     /**
@@ -38,6 +39,7 @@ public class OrderQueue implements Writable {
      */
     public void addCompletedOrder(Order order) {
         completedOrders.add(order);
+        EventLog.getInstance().logEvent(new Event("Completed order with ID " + order.getOrderId() + " was added to completed orders."));
     }
 
     /**
@@ -53,6 +55,7 @@ public class OrderQueue implements Writable {
             pendingOrders.remove(orderToComplete);
             completedOrders.add(orderToComplete);
         }
+        EventLog.getInstance().logEvent(new Event("Order with ID " + orderId + " was completed."));
     }
 
     /**
@@ -65,6 +68,7 @@ public class OrderQueue implements Writable {
         if (orderToCancel != null) {
             pendingOrders.remove(orderToCancel);
         }
+        EventLog.getInstance().logEvent(new Event("Order with ID " + orderId + " was cancelled."));
     }
 
     /**
@@ -109,9 +113,11 @@ public class OrderQueue implements Writable {
     public Order findOrderById(int orderId) {
         for (Order order : pendingOrders) {
             if (order.getOrderId() == orderId) {
+                EventLog.getInstance().logEvent(new Event("Order with ID " + orderId + " was found in the queue."));
                 return order;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Order with ID " + orderId + " was not found in the queue."));
         return null;
     }
 
@@ -120,8 +126,10 @@ public class OrderQueue implements Writable {
      */
     public int getNextOrderPrepTime() {
         if (!pendingOrders.isEmpty()) {
+            EventLog.getInstance().logEvent(new Event("Estimated prep time for next order is " + pendingOrders.get(0).getEstimatedPrepTime() + " minutes."));
             return pendingOrders.get(0).getEstimatedPrepTime();
         }
+        EventLog.getInstance().logEvent(new Event("No pending orders."));
         return 0;
     }
 

@@ -24,3 +24,28 @@ The primary users of this application will be **ice-cream shop customers** who w
 - You can locate my visual component by looking at the Actions panel on the right side of the application - there is a colorful ice cream cone graphic displayed in the center of that panel
 - You can save the state of my application by clicking the "Save Orders" button in the Actions panel on the right, or by clicking on the "File" menu at the top of the window and selecting "Save Order Queue"
 - You can reload the state of my application by clicking the "Load Orders" button in the Actions panel on the right, or by clicking on the "File" menu at the top of the window and selecting "Load Order Queue"
+
+# Phase 4: Task 2
+Event Log: </br>
+Mon Aug 04 22:59:43 PDT 2025: Topping Chocolate Drizzle was added to order #1. </br>
+Mon Aug 04 22:59:43 PDT 2025: Topping Waffle was added to order #1.</br>
+Mon Aug 04 22:59:43 PDT 2025: Order with ID 1 was added to the queue.</br>
+Mon Aug 04 23:00:05 PDT 2025: Topping Sprinkles was added to order #2.</br>
+Mon Aug 04 23:00:05 PDT 2025: Topping Marshmallow was added to order #2.</br>
+Mon Aug 04 23:00:05 PDT 2025: Order with ID 2 was added to the queue.</br>
+Mon Aug 04 23:00:09 PDT 2025: Topping Chocolate Drizzle was added to order #1.</br>
+Mon Aug 04 23:00:09 PDT 2025: Topping Waffle was added to order #1.</br>
+Mon Aug 04 23:00:09 PDT 2025: Order with ID 1 was added to the queue.</br>
+Mon Aug 04 23:00:09 PDT 2025: Topping Sprinkles was added to order #2.</br>
+Mon Aug 04 23:00:09 PDT 2025: Topping Marshmallow was added to order #2.</br>
+Mon Aug 04 23:00:09 PDT 2025: Order with ID 2 was added to the queue.</br>
+Mon Aug 04 23:00:15 PDT 2025: Order with ID 2 was found in the queue.</br>
+Mon Aug 04 23:00:15 PDT 2025: Order #2 was marked as completed.</br>
+Mon Aug 04 23:00:15 PDT 2025: Order with ID 2 was completed.</br>
+Mon Aug 04 23:00:18 PDT 2025: Topping Chocolate Drizzle was added to order #1.</br>
+Mon Aug 04 23:00:18 PDT 2025: Topping Waffle was added to order #1.</br>
+Mon Aug 04 23:00:18 PDT 2025: Order with ID 1 was added to the queue.</br>
+Mon Aug 04 23:00:18 PDT 2025: Topping Sprinkles was added to order #2.</br>
+Mon Aug 04 23:00:18 PDT 2025: Topping Marshmallow was added to order #2.</br>
+Mon Aug 04 23:00:18 PDT 2025: Order #2 was marked as completed.</br>
+Mon Aug 04 23:00:18 PDT 2025: Completed order with ID 2 was added to completed orders.</br>

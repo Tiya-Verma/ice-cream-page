@@ -101,6 +101,7 @@ public class Order implements Writable {
      */
     public void addTopping(Topping topping) {
         toppings.add(topping);
+        EventLog.getInstance().logEvent(new Event("Topping " + topping.getName() + " was added to order #" + orderId + "."));
     }
 
     /**
@@ -109,6 +110,7 @@ public class Order implements Writable {
      */
     public void markCompleted() {
         this.isCompleted = true;
+        EventLog.getInstance().logEvent(new Event("Order #" + orderId + " was marked as completed."));
     }
 
     @Override

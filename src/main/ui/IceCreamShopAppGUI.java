@@ -1,6 +1,8 @@
 package ui;
 
 import model.*;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -16,6 +18,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Graphical User Interface for the Ice Cream Shop Pre-Order System
@@ -53,6 +57,14 @@ public class IceCreamShopAppGUI extends JFrame implements ActionListener {
         initializeGraphics();
         setupComponents();
         setVisible(true);
+
+        // Add a window listener to print event log on quit
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printEventLog(); 
+            }
+        });
     }
 
     /**
@@ -639,6 +651,16 @@ public class IceCreamShopAppGUI extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this,
                     "Unable to read from file: " + JSON_STORE + "\nStarting with empty queue",
                     "Load Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    /**
+     * EFFECTS: prints all the logged events to the console
+     */
+    public void printEventLog() {
+        System.out.println("Event Log:");
+        for (Event e : EventLog.getInstance()) {
+            System.out.println(e.getDate() + ": " + e.getDescription());
         }
     }
 }
