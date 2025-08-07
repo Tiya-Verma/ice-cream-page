@@ -39,7 +39,9 @@ public class OrderQueue implements Writable {
      */
     public void addCompletedOrder(Order order) {
         completedOrders.add(order);
-        EventLog.getInstance().logEvent(new Event("Completed order with ID " + order.getOrderId() + " was added to completed orders."));
+        EventLog.getInstance().logEvent(new Event("Completed order with ID " 
+                        + order.getOrderId() 
+                            + " was added to completed orders."));
     }
 
     /**
@@ -126,7 +128,9 @@ public class OrderQueue implements Writable {
      */
     public int getNextOrderPrepTime() {
         if (!pendingOrders.isEmpty()) {
-            EventLog.getInstance().logEvent(new Event("Estimated prep time for next order is " + pendingOrders.get(0).getEstimatedPrepTime() + " minutes."));
+            EventLog.getInstance().logEvent(new Event("Estimated prep time for next order is " 
+                       + pendingOrders.get(0).getEstimatedPrepTime() 
+                       + " minutes."));
             return pendingOrders.get(0).getEstimatedPrepTime();
         }
         EventLog.getInstance().logEvent(new Event("No pending orders."));

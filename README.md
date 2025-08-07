@@ -49,3 +49,10 @@ Mon Aug 04 23:00:18 PDT 2025: Topping Sprinkles was added to order #2.</br>
 Mon Aug 04 23:00:18 PDT 2025: Topping Marshmallow was added to order #2.</br>
 Mon Aug 04 23:00:18 PDT 2025: Order #2 was marked as completed.</br>
 Mon Aug 04 23:00:18 PDT 2025: Completed order with ID 2 was added to completed orders.</br>
+
+# Phase 4: Task 3
+
+- Personally, I had a really fun time working on the project and it also helped me work through some random ideas that come to mind, things I would otherwise not spend time working on.
+- I think that I could have improved on the interface of the project if I had more time to work on it, I would have made the interface more interactive and tried to make it look like an actual ice-cream shop app.
+- Also, if I had more time to work on this project, I would consider refactoring the 'OrderQueue' class to improve its single responsibility and reduce coupling, because right now, the 'OrderQueue' class handles both managing the order collections and processing order state changes, which violates the single responsibility principle. 
+- So, I would extract the order processing into a separate 'OrderProcessor' class that would be responsible for handling order completion, cancellation, and state transitions. By doing this, the 'OrderQueue' class would focus onlyon maintaining the collections of pending and completed orders, while the 'OrderProcessor' class would handle the states of the orders. 

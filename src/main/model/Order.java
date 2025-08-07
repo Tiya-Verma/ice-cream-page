@@ -101,7 +101,10 @@ public class Order implements Writable {
      */
     public void addTopping(Topping topping) {
         toppings.add(topping);
-        EventLog.getInstance().logEvent(new Event("Topping " + topping.getName() + " was added to order #" + orderId + "."));
+        EventLog.getInstance().logEvent(new Event("Topping " 
+                        + topping.getName()
+                         + " was added to order #" 
+                         + orderId + "."));
     }
 
     /**
